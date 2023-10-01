@@ -35,6 +35,7 @@ import org.bukkit.plugin.Plugin;
  * @author Wesley Smith
  * @since 1.0
  */
+@SuppressWarnings("unused")
 public class AnvilGUI {
 
     /**
@@ -198,10 +199,7 @@ public class AnvilGUI {
      * @param sendClosePacket Whether to send the close inventory event, packet, etc
      */
     private void closeInventory(boolean sendClosePacket) {
-        if (!open) {
-            return;
-        }
-
+        if (!open) { return; }
         open = false;
 
         HandlerList.unregisterAll(listener);
@@ -359,6 +357,10 @@ public class AnvilGUI {
                 closeInventory(false);
                 if (preventClose) {
                     mainThreadExecutor.execute(AnvilGUI.this::openInventory);
+                }
+                // Clear the inventory (safe redundancy)
+                for (int i = 0; i < event.getInventory().getSize(); i++) {
+                    event.getInventory().setItem(i, null);
                 }
             }
         }
