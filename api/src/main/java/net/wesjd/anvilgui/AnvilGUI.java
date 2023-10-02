@@ -116,6 +116,8 @@ public class AnvilGUI {
      */
     private boolean open;
 
+    private boolean inUse = false;
+
     /**
      * The actual container backing the Anvil GUI
      */
@@ -183,7 +185,14 @@ public class AnvilGUI {
         WRAPPER.setActiveContainerId(container, containerId);
         WRAPPER.addActiveContainerSlotListener(container, player);
 
-        open = true;
+        open = true; inUse = true;
+    }
+
+    /**
+     * If the AnvilGUI is currently being scheduled/used by the player
+     */
+    public boolean inUse() {
+        return inUse;
     }
 
     /**
@@ -208,6 +217,7 @@ public class AnvilGUI {
             WRAPPER.handleInventoryCloseEvent(player);
             WRAPPER.setActiveContainerDefault(player);
             WRAPPER.sendPacketCloseWindow(player, containerId);
+            inUse = false;
         }
 
         if (closeListener != null) {
