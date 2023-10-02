@@ -600,6 +600,7 @@ public class AnvilGUI {
          * @return The {@link AnvilGUI} instance from this builder
          * @throws IllegalArgumentException when the onClick function, plugin, or player is null
          */
+        @SuppressWarnings("ExtractMethodRecommender")
         public AnvilGUI open(Player player) {
             Validate.notNull(plugin, "Plugin cannot be null");
             Validate.notNull(clickHandler, "click handler cannot be null");
@@ -611,7 +612,11 @@ public class AnvilGUI {
                 }
 
                 ItemMeta paperMeta = itemLeft.getItemMeta();
-                paperMeta.setDisplayName(itemText);
+                if (itemText.isEmpty()) {
+                    paperMeta.setDisplayName(" ");
+                }else {
+                    paperMeta.setDisplayName(itemText);
+                }
                 itemLeft.setItemMeta(paperMeta);
             }
 
