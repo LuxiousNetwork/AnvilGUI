@@ -24,6 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.*;
+import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -834,11 +835,12 @@ public class AnvilGUI {
          * @return The snapshot
          */
         private static StateSnapshot fromAnvilGUI(AnvilGUI anvilGUI) {
-            final Inventory inventory = anvilGUI.getInventory();
+            final AnvilInventory inventory = (AnvilInventory) anvilGUI.getInventory();
             return new StateSnapshot(
                     itemNotNull(inventory.getItem(Slot.INPUT_LEFT)).clone(),
                     itemNotNull(inventory.getItem(Slot.INPUT_RIGHT)).clone(),
                     itemNotNull(inventory.getItem(Slot.OUTPUT)).clone(),
+                    inventory.getRenameText(),
                     anvilGUI.player);
         }
 
@@ -846,6 +848,11 @@ public class AnvilGUI {
          * The {@link ItemStack} in the anvilGui slots
          */
         private final ItemStack leftItem, rightItem, outputItem;
+
+        /**
+         * The text in the rename field
+         */
+        private final String renameText;
 
         /**
          * The {@link Player} that clicked the output slot
@@ -859,10 +866,11 @@ public class AnvilGUI {
          * @param outputItem The item that would have been outputted, when the items would have been combined
          * @param player The player that clicked the output slot
          */
-        public StateSnapshot(ItemStack leftItem, ItemStack rightItem, ItemStack outputItem, Player player) {
+        public StateSnapshot(ItemStack leftItem, ItemStack rightItem, ItemStack outputItem, String renameText, Player player) {
             this.leftItem = leftItem;
             this.rightItem = rightItem;
             this.outputItem = outputItem;
+            this.renameText = renameText;
             this.player = player;
         }
 
@@ -909,7 +917,8 @@ public class AnvilGUI {
          * @return The text of the rename field
          */
         public String getText() {
-            return outputItem.hasItemMeta() ? outputItem.getItemMeta().getDisplayName() : "";
+            return renameText;
+            // return outputItem.hasItemMeta() ? outputItem.getItemMeta().getDisplayName() : "";
         }
     }
 }
