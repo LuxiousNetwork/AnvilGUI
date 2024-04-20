@@ -10,14 +10,6 @@
         <version>1.9.0.14-kami</version>
     </parent>
 
-    <distributionManagement>
-        <!-- Publish to Luxious Nexus -->
-        <repository>
-            <id>luxious-plugins</id>
-            <url>https://nexus.luxiouslabs.net/plugins</url>
-        </repository>
-    </distributionManagement>
-
     <artifactId>anvilgui</artifactId>
 
     <dependencies>

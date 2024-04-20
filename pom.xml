@@ -107,14 +107,11 @@
     </build>
 
     <distributionManagement>
+        <!-- Publish to Luxious Nexus -->
         <repository>
-            <id>codemc-releases</id>
-            <url>https://repo.codemc.io/repository/maven-releases/</url>
+            <id>luxious-plugins</id>
+            <url>https://nexus.luxiouslabs.net/plugins</url>
         </repository>
-        <snapshotRepository>
-            <id>codemc-snapshots</id>
-            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
-        </snapshotRepository>
     </distributionManagement>
 
 </project>
