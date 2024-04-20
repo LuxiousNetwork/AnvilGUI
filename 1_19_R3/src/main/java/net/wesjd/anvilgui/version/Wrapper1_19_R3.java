@@ -9,6 +9,7 @@ import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.IInventory;
 import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.inventory.*;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory;
@@ -116,6 +117,12 @@ public final class Wrapper1_19_R3 implements VersionWrapper {
 
         public int getContainerId() {
             return this.j;
+        }
+
+        @Override
+        public void a(String s) {
+            super.a(s);
+            Bukkit.getLogger().info("-AnvilContainer.a(String s) called: " + s);
         }
 
         @Override

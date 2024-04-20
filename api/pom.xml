@@ -7,8 +7,16 @@
     <parent>
         <groupId>net.wesjd</groupId>
         <artifactId>anvilgui-parent</artifactId>
-        <version>1.9.0.13-kami</version>
+        <version>1.9.0.14-kami</version>
     </parent>
+
+    <distributionManagement>
+        <!-- Publish to Luxious Nexus -->
+        <repository>
+            <id>luxious-plugins</id>
+            <url>https://nexus.luxiouslabs.net/plugins</url>
+        </repository>
+    </distributionManagement>
 
     <artifactId>anvilgui</artifactId>
 
